@@ -31,6 +31,9 @@ class WeatherService {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${this.apiKey}`
     );
+    if (!response.ok) {
+      throw new Error('Failed to fetch location data');
+    }
     const data = await response.json();
     console.log('Location data:', data); // Log the location data
     return data;
@@ -63,6 +66,9 @@ class WeatherService {
     const response = await fetch(
       `${this.baseURL}/forecast?${this.buildWeatherQuery(coordinates)}`
     );
+    if (!response.ok) {
+      throw new Error('Failed to fetch weather data');
+    }
     const data = await response.json();
     console.log('Weather data:', data); // Log the weather data
     return data;

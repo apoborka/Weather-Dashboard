@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-dotenv.config();
+dotenv.config(); // Ensure this line is at the top
 
 // Get the directory name in ES module scope
 const __filename = fileURLToPath(import.meta.url);

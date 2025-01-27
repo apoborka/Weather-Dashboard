@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="/src/styles/jass.css">
   <title>Weather Dashboard</title>
 </head>
@@ -31,10 +32,16 @@
             </div>
           </div>
         </form>
+        <div id="history"></div> <!-- Move the search history container here -->
       </aside>
       <main class="col-lg-9">
-        <div id="current-weather"></div>
-        <div id="future-weather"></div>
+        <div id="today"></div>
+        <div id="forecast" class="row"></div> <!-- Add 'row' class to forecast container -->
+        <h1 id="search-title"></h1>
+        <img id="weather-img" alt="Weather Icon">
+        <p id="temp"></p>
+        <p id="wind"></p>
+        <p id="humidity"></p>
       </main>
     </div>
   </div>
