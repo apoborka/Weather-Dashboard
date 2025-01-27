@@ -44,4 +44,5 @@
   ## Acknowledgments
   This project utilized GitHub Copilot.
   Starter code was provided by EdX.
+  This project utilizes the [OpenWeatherAPI](https://openweathermap.org/api) for all weather data.
   
