@@ -1,6 +1,6 @@
 import './styles/jass.css';
 
-// * All necessary DOM elements selected
+// All necessary DOM elements selected
 const searchForm: HTMLFormElement = document.getElementById(
   'search-form'
 ) as HTMLFormElement;
@@ -47,8 +47,8 @@ const fetchWeather = async (cityName: string) => {
 
   console.log('weatherData: ', weatherData);
 
-  renderCurrentWeather(weatherData[0]);
-  renderForecast(weatherData.slice(1));
+  renderCurrentWeather(weatherData.current);
+  renderForecast(weatherData.forecast);
 };
 
 const fetchSearchHistory = async () => {
@@ -77,20 +77,20 @@ Render Functions
 */
 
 const renderCurrentWeather = (currentWeather: any): void => {
-  const { city, date, icon, iconDescription, tempF, windSpeed, humidity } =
+  const { cityName, date, icon, description, temperature, windSpeed, humidity } =
     currentWeather;
 
   // convert the following to typescript
-  heading.textContent = `${city} (${date})`;
+  heading.textContent = `${cityName} (${date})`;
   weatherIcon.setAttribute(
     'src',
     `https://openweathermap.org/img/w/${icon}.png`
   );
-  weatherIcon.setAttribute('alt', iconDescription);
+  weatherIcon.setAttribute('alt', description);
   weatherIcon.setAttribute('class', 'weather-img');
   heading.append(weatherIcon);
-  tempEl.textContent = `Temp: ${tempF}°F`;
-  windEl.textContent = `Wind: ${windSpeed} MPH`;
+  tempEl.textContent = `Temp: ${temperature}°C`;
+  windEl.textContent = `Wind: ${windSpeed} m/s`;
   humidityEl.textContent = `Humidity: ${humidity} %`;
 
   if (todayContainer) {
@@ -118,7 +118,7 @@ const renderForecast = (forecast: any): void => {
 };
 
 const renderForecastCard = (forecast: any) => {
-  const { date, icon, iconDescription, tempF, windSpeed, humidity } = forecast;
+  const { date, icon, description, temperature, windSpeed, humidity } = forecast;
 
   const { col, cardTitle, weatherIcon, tempEl, windEl, humidityEl } =
     createForecastCard();
@@ -129,9 +129,9 @@ const renderForecastCard = (forecast: any) => {
     'src',
     `https://openweathermap.org/img/w/${icon}.png`
   );
-  weatherIcon.setAttribute('alt', iconDescription);
-  tempEl.textContent = `Temp: ${tempF} °F`;
-  windEl.textContent = `Wind: ${windSpeed} MPH`;
+  weatherIcon.setAttribute('alt', description);
+  tempEl.textContent = `Temp: ${temperature} °C`;
+  windEl.textContent = `Wind: ${windSpeed} m/s`;
   humidityEl.textContent = `Humidity: ${humidity} %`;
 
   if (forecastContainer) {
@@ -150,7 +150,7 @@ const renderSearchHistory = async (searchHistory: any) => {
         '<p class="text-center">No Previous Search History</p>';
     }
 
-    // * Start at end of history array and count down to show the most recent cities at the top.
+    // Start at end of history array and count down to show the most recent cities at the top.
     for (let i = historyList.length - 1; i >= 0; i--) {
       const historyItem = buildHistoryListItem(historyList[i]);
       searchHistoryContainer.append(historyItem);
